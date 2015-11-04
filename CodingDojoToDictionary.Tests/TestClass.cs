@@ -11,9 +11,29 @@ namespace CodingDojoToDictionary.Tests
     public class TestClass
     {
         [Test]
-        public void Test_Class_Instantiation()
+        public void TestSingleAssignment()
         {
-            var @class = new Class();
+            var sut = new Class();
+            var input = "a=1";
+
+            Assert.That(sut.ToDictionary(input), Is.EqualTo(new Dictionary<string, string>
+            {
+               {"a", "1"}
+            }));
+        }
+
+        [Test]
+        public void TestMultipleAssignments()
+        {
+            var sut = new Class();
+            var input = "a=1;b=2;c=3";
+
+            Assert.That(sut.ToDictionary(input), Is.EqualTo(new Dictionary<string, string>
+            {
+               {"a", "1"},
+               {"b", "2"},
+               {"c", "3"}
+            }));
         }
     }
 }
